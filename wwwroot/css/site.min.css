@@ -1,0 +1,38 @@
+body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
+
+#nome, #logradouro {
+    float: left;
+    width: 69%;
+    margin-right: 1%;
+}
+
+#data_nasc, #numero {
+    float: left;
+    width: 30%;
+}
+
+#complemento, #bairro,  {
+    float: left;
+    width: 40%;
+    margin: 0px 1% 0px 0px;
+}
+
+#cep,  {
+    float: left;
+    width: 18%;
+}
+
+#cargo, #rf {
+    float: left;
+    width: 41%;
+    margin: 0px 1% 0px 0px; 
+}
+
+#vinculo {
+    float: left;
+    width: 16%; 
+}
+
+
+
+
