@@ -26,7 +26,7 @@ namespace PmspProjeto
                 } 
                 catch(Exception ex) 
                 {
-                    var saida = servico.GetService<Logger<Program>>();
+                    var saida = servico.GetService<ILogger<Program>>();
                     saida.LogError(ex.Message, "Erro a criar banco de dados");
                 }
             }

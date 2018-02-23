@@ -13,7 +13,7 @@ namespace PmspProjeto.Controllers
     {
         readonly PmspContext _context;
         public Servidor Servidor { get; set; }
-        
+
         public HomeController(PmspContext context)
         {
             _context = context;
@@ -28,7 +28,7 @@ namespace PmspProjeto.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
-           return View();
+            return View();
         }
 
         [HttpPost]
@@ -43,13 +43,15 @@ namespace PmspProjeto.Controllers
         public IActionResult Editar(int Id)
         {
             var dados = _context.Servidores.Where(s => s.Id == Id).FirstOrDefault();
+            dados.Endereco = _context.Enderecos.Where(e => e.Id == Id).FirstOrDefault();
             return View(dados);
         }
 
-         [HttpGet]
+        [HttpGet]
         public IActionResult Detalhes(int Id)
         {
             var dados = _context.Servidores.Where(s => s.Id == Id).FirstOrDefault();
+            dados.Endereco = _context.Enderecos.Where(e => e.Id == Id).FirstOrDefault();
             return View(dados);
         }
 
@@ -62,18 +64,18 @@ namespace PmspProjeto.Controllers
             }
 
             var atualizarServidor = _context.Servidores.Where(s => s.Id == Id).FirstOrDefault();
-            if(atualizarServidor == null) 
+            var atualizarEndereco = _context.Enderecos.Where(s => s.Id == Id).FirstOrDefault();
+            if (atualizarServidor == null)
             {
                 return RedirectToAction("Index");
             }
 
             atualizarServidor.Nome = servidor.Nome;
             atualizarServidor.DataNascimento = servidor.DataNascimento;
-            atualizarServidor.EndLogradouro = servidor.EndLogradouro;
-            atualizarServidor.EndNumero = servidor.EndNumero;
-            atualizarServidor.EndComplemento = servidor.EndComplemento;
-            atualizarServidor.EndCEP = servidor.EndCEP;
-            atualizarServidor.EndBairro = servidor.EndBairro;
+            atualizarEndereco.Logradouro = servidor.Endereco.Logradouro;
+            atualizarEndereco.Numero = servidor.Endereco.Numero;
+            atualizarEndereco.Complemento = servidor.Endereco.Complemento;
+            atualizarEndereco.CEP = servidor.Endereco.CEP;
             atualizarServidor.RF = servidor.RF;
             atualizarServidor.Vinculo = servidor.Vinculo;
             atualizarServidor.Cargo = servidor.Cargo;
@@ -82,6 +84,7 @@ namespace PmspProjeto.Controllers
 
 
             _context.Servidores.Update(atualizarServidor);
+            _context.Enderecos.Update(atualizarEndereco);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -90,11 +93,13 @@ namespace PmspProjeto.Controllers
         public IActionResult Deletar(int Id)
         {
             var servidor = _context.Servidores.Where(s => s.Id == Id).FirstOrDefault();
-            if(servidor == null)
+            var endereco = _context.Enderecos.Where(e => e.Id == Id).FirstOrDefault();
+            if (servidor == null && endereco == null)
                 return RedirectToAction("Index");
 
             _context.Servidores.Remove(servidor);
-            _context.SaveChanges();          
+            _context.Enderecos.Remove(endereco);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
