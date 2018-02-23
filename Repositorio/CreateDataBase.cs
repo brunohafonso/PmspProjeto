@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using PmspProjeto.Models;
+using System.Collections.Generic;
 
 namespace PmspProjeto.Repositorio
 {
@@ -18,11 +19,15 @@ namespace PmspProjeto.Repositorio
                 Nome = "Bruno Afonso",
                 Email = "brunohafonso@gmail.com",
                 DataNascimento = DateTime.Parse("25/04/1995"),
-                RF = "828.720.1",
-                Vinculo = 1,
+                RF = "828.720.1"
+            };
+
+            var vinculo = new Vinculo(){
+                Vinc = 1,
                 Cargo = "Auxiliar Técnico de Educação",
                 UnidadeLotacao = "Cei Jardim Climax II",
-                UnidadeExercicio = "Cei Jardim Climax II"
+                UnidadeExercicio = "Cei Jardim Climax II",
+                ServidorId = servidor.Id
             };
 
             var endereco = new Endereco(){
@@ -33,6 +38,7 @@ namespace PmspProjeto.Repositorio
             };
 
             servidor.Endereco = endereco;
+            context.Vinculos.Add(vinculo);
 
             context.Servidores.Add(servidor);
             context.SaveChanges();

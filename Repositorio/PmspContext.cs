@@ -9,6 +9,9 @@ namespace PmspProjeto.Repositorio
 
         public DbSet<Servidor> Servidores { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+
+        public DbSet<Vinculo> Vinculos { get; set; }
+        
         
         
         
@@ -16,6 +19,7 @@ namespace PmspProjeto.Repositorio
         {
             modelBuilder.Entity<Servidor>().ToTable("Servidores");
             modelBuilder.Entity<Endereco>().ToTable("Enderecos");
+            modelBuilder.Entity<Endereco>().ToTable("Vinculos");
         }
     }
 }

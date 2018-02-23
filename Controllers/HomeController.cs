@@ -65,6 +65,7 @@ namespace PmspProjeto.Controllers
 
             var atualizarServidor = _context.Servidores.Where(s => s.Id == Id).FirstOrDefault();
             var atualizarEndereco = _context.Enderecos.Where(s => s.Id == Id).FirstOrDefault();
+            //var AtualizarVinculo =;
             if (atualizarServidor == null)
             {
                 return RedirectToAction("Index");
@@ -77,10 +78,10 @@ namespace PmspProjeto.Controllers
             atualizarEndereco.Complemento = servidor.Endereco.Complemento;
             atualizarEndereco.CEP = servidor.Endereco.CEP;
             atualizarServidor.RF = servidor.RF;
-            atualizarServidor.Vinculo = servidor.Vinculo;
-            atualizarServidor.Cargo = servidor.Cargo;
-            atualizarServidor.UnidadeLotacao = servidor.UnidadeLotacao;
-            atualizarServidor.UnidadeExercicio = servidor.UnidadeExercicio;
+            // atualizarServidor.Vinculo = servidor.Vinculo;
+            // atualizarServidor.Cargo = servidor.Cargo;
+            // atualizarServidor.UnidadeLotacao = servidor.UnidadeLotacao;
+            // atualizarServidor.UnidadeExercicio = servidor.UnidadeExercicio;
 
 
             _context.Servidores.Update(atualizarServidor);
